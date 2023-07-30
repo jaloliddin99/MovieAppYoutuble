@@ -47,7 +47,7 @@ dependencies {
     androidTestImplementation(Test.expresso)
 
     implementation(DaggerHilt.dagger)
-    implementation(DaggerHilt.dagger_capt)
-    implementation(DaggerHilt.dagger_compiler)
+    kapt(DaggerHilt.dagger_compiler)
+    kapt(DaggerHilt.dagger_android_compiler)
 
 }

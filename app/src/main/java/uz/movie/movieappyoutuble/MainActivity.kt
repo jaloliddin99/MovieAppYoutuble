@@ -10,34 +10,40 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import dagger.hilt.android.AndroidEntryPoint
+import uz.movie.movieappyoutuble.navigation.AppNavigation
+import uz.movie.movieappyoutuble.navigation.NavigationProvider
 import uz.movie.movieappyoutuble.ui.theme.MovieAppYoutubleTheme
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var navigationProvider: NavigationProvider
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             MovieAppYoutubleTheme {
                 // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    Greeting("Android")
-                }
+                val navController = rememberNavController()
+                App(navHostController = navController, navigationProvider)
             }
         }
     }
 }
 
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    MovieAppYoutubleTheme {
-        Greeting("Android")
+fun App(navHostController: NavHostController,
+navigationProvider: NavigationProvider) {
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = MaterialTheme.colors.background
+    ) {
+        AppNavigation(navController = navHostController, navigationProvider = navigationProvider)
     }
 }

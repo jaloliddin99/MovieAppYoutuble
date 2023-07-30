@@ -43,7 +43,7 @@ android {
     }
     packagingOptions {
         resources {
-            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+            exclude 'META-INF/DEPENDENCIES'
         }
     }
 }
@@ -51,6 +51,8 @@ android {
 dependencies {
 
     implementation(project(":feature:movie:ui"))
+    implementation(project(":core:common"))
+    implementation(project(":core:feature_api"))
 
     implementation Deps.core
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
@@ -67,6 +69,11 @@ dependencies {
 
 
     implementation(DaggerHilt.dagger)
-    implementation(DaggerHilt.dagger_capt)
-    implementation(DaggerHilt.dagger_compiler)
+    kapt(DaggerHilt.dagger_compiler)
+    kapt(DaggerHilt.dagger_android_compiler)
+
+    implementation(JetpackCompose.jetpackNavigation)
+
+
+
 }

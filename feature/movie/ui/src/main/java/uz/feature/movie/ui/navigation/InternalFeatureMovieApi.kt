@@ -7,7 +7,7 @@ import androidx.navigation.navigation
 import uz.core.common.MovieFeature
 import uz.core.feature_api.FeatureApi
 
-object InternalFeatureMovieApi: FeatureApi {
+internal object InternalFeatureMovieApi: FeatureApi {
     override fun registerGraph(
         navController: NavHostController,
         navGraphBuilder: NavGraphBuilder
