@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -48,6 +50,8 @@ android {
 
 dependencies {
 
+    implementation(project(":feature:movie:ui"))
+
     implementation Deps.core
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
     implementation 'androidx.activity:activity-compose:1.3.1'
@@ -60,4 +64,9 @@ dependencies {
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
+
+
+    implementation(DaggerHilt.dagger)
+    implementation(DaggerHilt.dagger_capt)
+    implementation(DaggerHilt.dagger_compiler)
 }

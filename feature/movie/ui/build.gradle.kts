@@ -1,6 +1,8 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -36,6 +38,7 @@ android {
 dependencies {
 
     implementation(project(":core:feature_api"))
+    implementation(project(":core:common"))
 
 
     implementation(Deps.core)
@@ -44,5 +47,11 @@ dependencies {
     testImplementation(Test.jUnit)
     androidTestImplementation(Test.testJunit)
     androidTestImplementation(Test.expresso)
+
+    implementation(DaggerHilt.dagger)
+    implementation(DaggerHilt.dagger_capt)
+    implementation(DaggerHilt.dagger_compiler)
+
+    implementation(JetpackCompose.jetpackNavigation)
 
 }
